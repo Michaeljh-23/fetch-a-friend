@@ -1,3 +1,6 @@
+h3 {
+  margin-bottom: 0px !important;
+}
 .App {
   display: flex;
   flex-direction: column;
@@ -19,9 +22,10 @@
 .App-header {
   background-color: #282c34;
   display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -44,4 +48,108 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+#search-page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+}
+#zipInput {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+#zipInput input {
+  /* margin-top: auto; */
+  background-color: aqua;
+}
+#dog-content-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid black;
+}
+#location-input {
+  display: flex;
+  flex-direction: column;
+}
+.location-input-group {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.filter-form {
+  /* max-width: 600px; */
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  padding: 12px;
+}
+.filter-form-split {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
+}
+.accordion-body {
+  padding: 0px !important;
+}
+/* .breeds-list {
+  padding: 20px;
+} */
+
+.alphabet-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.alphabet-item {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+  padding: 5px;
+}
+
+.alphabet-item input[type="checkbox"] {
+  display: none;
+}
+
+.alphabet-item input[type="checkbox"]:checked + span {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+.alphabet-item input[type="checkbox"]:disabled + span {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.filtered-breeds {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  justify-content: start;
+  justify-items: start;
+}
+
+.filtered-breeds .alphabet-item {
+  text-align: center;
+  font-size: 16px;
+}
+
+.filtered-breeds .alphabet-item input[type="checkbox"]:checked + span {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }

@@ -1,27 +1,48 @@
-const LoginForm = () => {
+import { useState } from "react";
+import { login } from "../../api/auth.ts";
+import { useNavigate } from "react-router";
+
+const LoginForm = ({ loggedIn, setLoggedIn }) => {
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let user = { name, email };
+    try {
+      const response = login(user);
+      setLoggedIn(true);
+      navigate("/search");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
-    <form className="auth-form">
+    <form className="auth-form" onSubmit={handleSubmit}>
       <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          required
-        />
-        <small id="emailHelp" class="form-text text-muted">
-          We'll never share your email with anyone else.
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="name">Name</label>
+        <label for="authInputName">What should we call you?</label>
         <input
           type="text"
-          class="form-control"
-          id="auth-name"
-          placeholder="What should we call you?"
+          className="form-control mb-2"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="authInputEmail">Email</label>
+        <input
+          type="email"
+          className="form-control mb-2"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
       </div>
