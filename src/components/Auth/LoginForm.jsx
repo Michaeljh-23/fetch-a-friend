@@ -24,8 +24,8 @@ const LoginForm = ({ loggedIn, setLoggedIn }) => {
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
-      <div class="form-group">
-        <label for="authInputName">What should we call you?</label>
+      <div className="form-group">
+        <label htmlFor="authInputName">What should we call you?</label>
         <input
           type="text"
           className="form-control mb-2"
@@ -35,8 +35,8 @@ const LoginForm = ({ loggedIn, setLoggedIn }) => {
           required
         />
       </div>
-      <div class="form-group">
-        <label for="authInputEmail">Email</label>
+      <div className="form-group">
+        <label htmlFor="authInputEmail">Email</label>
         <input
           type="email"
           className="form-control mb-2"
@@ -46,7 +46,7 @@ const LoginForm = ({ loggedIn, setLoggedIn }) => {
           required
         />
       </div>
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" className="rounded">
         Submit
       </button>
     </form>

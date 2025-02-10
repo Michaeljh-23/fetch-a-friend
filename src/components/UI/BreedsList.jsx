@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 
-const BreedsList = ({ allBreeds, selectedBreeds, setSelectedBreeds }) => {
+const BreedsList = ({
+  allBreeds,
+  selectedBreeds,
+  setSelectedBreeds,
+  fetchDogs,
+}) => {
   let alphabetLetters = "abcdefghijklmnopqrstuvwxyz".split("");
   const [letterCategories, setLetterCategories] = useState([]);
   const [filteredBreeds, setFilteredBreeds] = useState([]);
@@ -30,14 +35,16 @@ const BreedsList = ({ allBreeds, selectedBreeds, setSelectedBreeds }) => {
           breed.toLowerCase().startsWith(selectedLetter)
         )
       );
-      console.log("clicked");
       setFilteredBreeds(localFilteredBreeds);
     } else {
       setSelectedBreeds(updatedItems);
     }
   };
-
-  console.log(alphabet, letterCategories, filteredBreeds);
+  const isLetterInUnderlinedBreed = (letter) => {
+    return selectedBreeds.some((breed) =>
+      breed.toLowerCase().startsWith(letter)
+    );
+  };
 
   return (
     <div className="breeds-list">
@@ -46,8 +53,15 @@ const BreedsList = ({ allBreeds, selectedBreeds, setSelectedBreeds }) => {
       <div className="alphabet-filter">
         {alphabet.map((letterObj) => {
           const { letter, disabled } = letterObj;
+          const isHighlighted = isLetterInUnderlinedBreed(letter);
+
           return (
-            <label key={letter} className="alphabet-item">
+            <label
+              key={letter}
+              className={`alphabet-item ${
+                isHighlighted ? "highlight-letter" : ""
+              }`}
+            >
               <input
                 type="checkbox"
                 value={letter}
@@ -62,13 +76,17 @@ const BreedsList = ({ allBreeds, selectedBreeds, setSelectedBreeds }) => {
         <label className="alphabet-item">
           <button
             value={"clear"}
-            onClick={() => {
+            className="rounded"
+            disabled={
+              selectedBreeds.length === 0 && letterCategories.length === 0
+            }
+            onClick={async () => {
               setLetterCategories([]);
               setFilteredBreeds([]);
               setSelectedBreeds([]);
             }}
           >
-            <span>Clear</span>
+            <span>Clear Chosen Breeds</span>
           </button>
         </label>
       </div>
@@ -86,7 +104,7 @@ const BreedsList = ({ allBreeds, selectedBreeds, setSelectedBreeds }) => {
             </label>
           ))
         ) : (
-          <p>Select a letter to see breeds.</p>
+          <p className="off-text">Select a letter to see breeds.</p>
         )}
       </div>
     </div>

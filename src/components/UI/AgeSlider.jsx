@@ -19,30 +19,34 @@ const AgeSlider = ({ ageRange, setAgeRange }) => {
         Age Range: {ageRange.min} - {ageRange.max}
       </label>
       <div className="age-range">
-        <label for="customRange2" class="form-label">
-          Example range
-        </label>
-        <input
-          type="range"
-          class="form-range"
-          min="0"
-          max="30"
-          id="minAge"
-          onChange={handleMinChange}
-          value={ageRange.min}
-        />
-        <label for="customRange2" class="form-label">
-          Max range
-        </label>
-        <input
-          type="range"
-          class="form-range"
-          min="0"
-          max="30"
-          id="minAge"
-          onChange={handleMaxChange}
-          value={ageRange.max}
-        />
+        <div>
+          <label htmlFor="minAge" className="form-label">
+            Minimum Age
+          </label>
+          <input
+            type="range"
+            className="form-range"
+            min="0"
+            max="20"
+            id="minAge"
+            onChange={handleMinChange}
+            value={ageRange.min}
+          />
+        </div>
+        <div>
+          <label htmlFor="maxAge" className="form-label">
+            Maximum Age
+          </label>
+          <input
+            type="range"
+            className="form-range"
+            min="0"
+            max="20"
+            id="minAge"
+            onChange={handleMaxChange}
+            value={ageRange.max}
+          />
+        </div>
       </div>
     </div>
   );
