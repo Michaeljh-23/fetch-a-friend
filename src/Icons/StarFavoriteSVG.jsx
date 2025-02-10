@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-const StarFavoriteSVG = ({ favoriteDogList = [] }) => {
-  const [favorite, setFavorite] = useState(false);
+const StarFavoriteSVG = ({ favorite, handleClick }) => {
   return (
-    <div role="button" onClick={() => setFavorite(!favorite)}>
+    <div role="button" onClick={handleClick}>
       <svg
         fill={favorite ? "#7a5c3f" : "transparent"}
         stroke="#7a5c3f"

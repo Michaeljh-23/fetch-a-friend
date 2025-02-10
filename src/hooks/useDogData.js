@@ -5,6 +5,7 @@ import {
   getDogMatches,
   getDogsByIds,
   getDogMatchByIds,
+  getFavoriteMatch,
 } from "../api/dogs.ts";
 
 const useDogData = (authChecked) => {
@@ -17,8 +18,13 @@ const useDogData = (authChecked) => {
   const [location, setLocation] = useState({ city: "", states: null });
   const [selectedBreeds, setSelectedBreeds] = useState([]);
   const [ageRange, setAgeRange] = useState({ min: 0, max: 20 });
-  const [favoriteDogList, setFavoriteDogList] = useState([]);
+  const [favoriteDogIds, setFavoriteDogIds] = useState([]);
+  const [favoriteDogs, setFavoriteDogs] = useState([]); // arr of full dog obj
+
   const [sort, setSort] = useState({ field: "breed", order: "asc" });
+  const [matchedDog, setMatchedDog] = useState(null);
+  const [currentTab, setCurrentTab] = useState(0);
+
   const [filter, setFilter] = useState({
     zipCodes: null,
     ageMin: 0,
@@ -42,6 +48,8 @@ const useDogData = (authChecked) => {
   };
 
   const fetchDogs = async () => {
+    console.log("hit 4");
+
     let updatedFilter;
     if (location.city.trim().length !== 0 || location.states !== null) {
       const zipcodesResponse = await getZipCodes(location);
@@ -98,7 +106,10 @@ const useDogData = (authChecked) => {
     setFilter((prev) => ({ ...prev, sort: `${field}:${order}` }));
   };
   useEffect(() => {
-    fetchDogs();
+    if (allBreeds.length > 0) {
+      fetchDogs();
+      setLoading(false);
+    }
   }, [allBreeds, filter.from, filter.breeds, filter.sort]);
 
   useEffect(() => {
@@ -107,6 +118,7 @@ const useDogData = (authChecked) => {
       setTimeout(() => {
         fetchData().finally(() => setLoading(false));
       }, 2000);
+      setLoading(true);
     }
   }, [authChecked]);
 
@@ -120,8 +132,38 @@ const useDogData = (authChecked) => {
     }));
   }, [selectedBreeds, zipCodes, ageRange]);
 
+  const fetchFavorites = async () => {
+    if (favoriteDogIds.length === 0) {
+      setFavoriteDogs([]);
+    }
+    try {
+      const dogs = await getDogsByIds(favoriteDogIds);
+      setFavoriteDogs(dogs);
+      setFavoriteDogIds(dogs.map((dog) => dog.id));
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching favorite dogs:", error);
+    }
+  };
+
+  const handleFindMatch = async () => {
+    try {
+      console.log(favoriteDogs, "favedogs in match func");
+      const favoriteDogIds = favoriteDogs.map((dog) => dog.id);
+      const matchId = await getFavoriteMatch(favoriteDogIds);
+      console.log(matchId, typeof matchId, [matchId.match]);
+      const matchedDog = await getDogsByIds([matchId.match]);
+      console.log(matchedDog);
+      setMatchedDog(matchedDog[0]);
+      setCurrentTab(2);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return {
     allBreeds,
+    handleFindMatch,
     setAllBreeds,
     dogs,
     setDogs,
@@ -135,6 +177,7 @@ const useDogData = (authChecked) => {
     setLoading,
     fetchDogs,
     fetchData,
+    fetchFavorites,
     filter,
     setFilter,
     location,
@@ -143,11 +186,17 @@ const useDogData = (authChecked) => {
     setSelectedBreeds,
     ageRange,
     setAgeRange,
-    favoriteDogList,
-    setFavoriteDogList,
+    favoriteDogIds,
+    setFavoriteDogIds,
     sort,
     setSort,
+    currentTab,
+    setCurrentTab,
     handleSortChange,
+    matchedDog,
+    setMatchedDog,
+    favoriteDogs,
+    setFavoriteDogs,
   };
 };
 

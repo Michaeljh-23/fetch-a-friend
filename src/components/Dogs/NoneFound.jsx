@@ -1,7 +1,9 @@
-const NoneFound = () => {
+const NoneFound = ({
+  message = "Sadly, We Found No Matches with These Filters Applied.",
+}) => {
   return (
     <div className="none-found">
-      <h3>Sadly, We Found No Matches with These Filters Applied.</h3>
+      <h3>{message}</h3>
     </div>
   );
 };

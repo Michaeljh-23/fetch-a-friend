@@ -125,15 +125,6 @@ const FilterForm = ({
                   <button onClick={fetchDogs} className="match-button rounded">
                     Search Dogs
                   </button>
-                  <button
-                    onClick={() => {
-                      setExactMatch(true);
-                      fetchDogs();
-                    }}
-                    className="match-button rounded"
-                  >
-                    Find my Match!
-                  </button>
                 </div>
               </div>
               <BreedsList

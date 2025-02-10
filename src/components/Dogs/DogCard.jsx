@@ -1,16 +1,16 @@
 import StarFavoriteSVG from "../../Icons/StarFavoriteSVG";
 
-const DogCard = ({ pup, setFavoriteDogList }) => {
+const DogCard = ({ pup, isFavorite, handleFavoriteToggle }) => {
   return (
     <div className="dog-card">
       <img src={pup.img} alt={pup.name} className="dog-image" />
       <div className="dog-details">
-        {/* <div className="favorites-star">
-          <StarFavoriteSVG />
-        </div> */}
         <div className="dog-name">
           <h3>{pup.name}</h3>{" "}
-          <StarFavoriteSVG setFavoriteDogList={setFavoriteDogList} />
+          <StarFavoriteSVG
+            favorite={isFavorite}
+            handleClick={() => handleFavoriteToggle(pup.id)}
+          />
         </div>
         <p>Age: {pup.age}</p>
         <p>Breed: {pup.breed}</p>
