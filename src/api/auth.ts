@@ -47,7 +47,6 @@ const request = async (endpoint: string, method = "GET", body: any = null) => {
   }
 };
 
-// TODO auth functions (login, logout, check status)
 export const login = async (user: User) => {
   return await request("/auth/login", "POST", user);
 };
@@ -57,6 +56,7 @@ export const logout = async () => {
 
 export const checkAuthStatus = async () => {
   try {
+    //TODOthis could likely be improved..
     await request("/dogs/breeds");
     return true;
   } catch (err) {

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const StarFavoriteSVG = ({ favorite, handleClick }) => {
   return (
     <div role="button" onClick={handleClick}>

@@ -7,8 +7,6 @@ const LoginForm = ({ loggedIn, setLoggedIn }) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +16,7 @@ const LoginForm = ({ loggedIn, setLoggedIn }) => {
       setLoggedIn(true);
       navigate("/search");
     } catch (error) {
-      setError(error.message);
+      console.log(error.message);
     }
   };
 

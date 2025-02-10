@@ -1,8 +1,10 @@
-const SortOptions = ({ sort, handleSortChange }) => {
+const SortOptions = ({ sort, handleSortChange, sortLoading }) => {
   return (
     <div className="sort-options">
       <label>Sort By: </label>
       <div className="sort-options-group">
+        {sortLoading && <div className="loader sort" />}
+
         <select
           value={sort.field}
           onChange={(e) => handleSortChange(e.target.value, sort.order)}

@@ -1,5 +1,5 @@
 import React from "react";
-
+// sampling colors
 const colors = [
   {
     bgColor: "#6f8f70",

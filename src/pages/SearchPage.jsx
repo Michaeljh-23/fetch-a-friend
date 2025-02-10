@@ -2,12 +2,10 @@ import FilterForm from "../components/Search/FilterForm.jsx";
 import DogList from "../components/Dogs/DogList.jsx";
 import SortOptions from "../components/UI/SortOptions.jsx";
 import Loading from "../components/UI/Loading.jsx";
-import StarFavoriteSVG from "../Icons/StarFavoriteSVG.jsx";
 import useDogData from "../hooks/useDogData.js";
 import SearchTabs from "../components/UI/SearchTabs.jsx";
-import { useState } from "react";
 import FavoritesList from "../components/Dogs/FavoritesList.jsx";
-import DogCard from "../components/Dogs/DogCard.jsx";
+import MatchSection from "../components/Dogs/MatchSection.jsx";
 
 const SearchPage = ({ authChecked }) => {
   const {
@@ -29,7 +27,6 @@ const SearchPage = ({ authChecked }) => {
     favoriteDogIds,
     setFavoriteDogIds,
     sort,
-    setSort,
     handleSortChange,
     handleFindMatch,
     matchedDog,
@@ -37,6 +34,7 @@ const SearchPage = ({ authChecked }) => {
     setCurrentTab,
     favoriteDogs,
     fetchFavorites,
+    sortLoading,
   } = useDogData(authChecked);
 
   const handleFavoriteToggle = (dogId) => {
@@ -46,11 +44,6 @@ const SearchPage = ({ authChecked }) => {
         : [...prev, dogId]
     );
   };
-
-  const filteredDogs =
-    currentTab === 1
-      ? dogs.filter((dog) => favoriteDogIds.includes(dog.id))
-      : dogs;
 
   const handleNextPage = () => {
     setFilter((prev) => ({ ...prev, from: prev.from + 24 }));
@@ -77,7 +70,11 @@ const SearchPage = ({ authChecked }) => {
         className="rounded"
       />
       <h1>Search</h1>
-      <SearchTabs currentTab={currentTab} handleTabChange={handleTabChange} />
+      <SearchTabs
+        currentTab={currentTab}
+        handleTabChange={handleTabChange}
+        matchedDog={matchedDog}
+      />
       {currentTab === 0 && (
         <div>
           <FilterForm
@@ -93,37 +90,35 @@ const SearchPage = ({ authChecked }) => {
             fetchDogs={fetchDogs}
             setZipCodes={setZipCodes}
             locationError={locationError}
+          />
+          <SortOptions
             sort={sort}
             handleSortChange={handleSortChange}
+            sortLoading={sortLoading}
           />
-          <SortOptions sort={sort} handleSortChange={handleSortChange} />
           <DogList
             dogs={dogs || []}
             handleFavoriteToggle={handleFavoriteToggle}
             favoriteDogIds={favoriteDogIds}
-            setFavoriteDogIds={setFavoriteDogIds}
           />
         </div>
       )}
       {currentTab === 1 && (
         <FavoritesList
-          dogs={dogs || []}
           favoriteDogs={favoriteDogs}
           favoriteDogIds={favoriteDogIds}
           handleFavoriteToggle={handleFavoriteToggle}
           handleFindMatch={handleFindMatch}
           fetchFavorites={fetchFavorites}
+          loading={loading}
         />
       )}
       {currentTab === 2 && matchedDog && (
-        <div className="match-container">
-          <h2>Your Perfect Match!</h2>
-          <DogCard
-            pup={matchedDog}
-            isFavorite={favoriteDogIds.includes(matchedDog.id)}
-            handleFavoriteToggle={handleFavoriteToggle}
-          />
-        </div>
+        <MatchSection
+          matchedDog={matchedDog}
+          favoriteDogs={favoriteDogs}
+          handleFindMatch={handleFindMatch}
+        />
       )}
       {currentTab !== 2 && (
         <div className="page-btn-group">

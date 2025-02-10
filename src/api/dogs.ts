@@ -90,3 +90,9 @@ export const getDogsByIds = async (dogIds) => {
   const dogResponse = await request("/dogs", "POST", dogIds);
   return dogResponse;
 };
+
+export const getLocationByZip = async (zipCode) => {
+  console.log(typeof [zipCode]);
+  const locationResponse = await request("/locations", "POST", [zipCode]);
+  return locationResponse;
+};

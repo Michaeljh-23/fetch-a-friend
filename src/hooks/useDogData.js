@@ -4,7 +4,6 @@ import {
   getZipCodes,
   getDogMatches,
   getDogsByIds,
-  getDogMatchByIds,
   getFavoriteMatch,
 } from "../api/dogs.ts";
 
@@ -22,6 +21,7 @@ const useDogData = (authChecked) => {
   const [favoriteDogs, setFavoriteDogs] = useState([]); // arr of full dog obj
 
   const [sort, setSort] = useState({ field: "breed", order: "asc" });
+  const [sortLoading, setSortLoading] = useState(false);
   const [matchedDog, setMatchedDog] = useState(null);
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -48,8 +48,6 @@ const useDogData = (authChecked) => {
   };
 
   const fetchDogs = async () => {
-    console.log("hit 4");
-
     let updatedFilter;
     if (location.city.trim().length !== 0 || location.states !== null) {
       const zipcodesResponse = await getZipCodes(location);
@@ -96,6 +94,8 @@ const useDogData = (authChecked) => {
 
       setDogs(dogsResults);
       setTotal(dogsResponse.total || 0);
+      setLoading(false);
+      setSortLoading(false);
     } catch (err) {
       console.error("Error fetching dogs:", err);
       setDogs([]);
@@ -104,11 +104,12 @@ const useDogData = (authChecked) => {
   const handleSortChange = (field, order) => {
     setSort({ field, order });
     setFilter((prev) => ({ ...prev, sort: `${field}:${order}` }));
+    setSortLoading(true);
   };
+
   useEffect(() => {
     if (allBreeds.length > 0) {
       fetchDogs();
-      setLoading(false);
     }
   }, [allBreeds, filter.from, filter.breeds, filter.sort]);
 
@@ -148,12 +149,9 @@ const useDogData = (authChecked) => {
 
   const handleFindMatch = async () => {
     try {
-      console.log(favoriteDogs, "favedogs in match func");
       const favoriteDogIds = favoriteDogs.map((dog) => dog.id);
       const matchId = await getFavoriteMatch(favoriteDogIds);
-      console.log(matchId, typeof matchId, [matchId.match]);
       const matchedDog = await getDogsByIds([matchId.match]);
-      console.log(matchedDog);
       setMatchedDog(matchedDog[0]);
       setCurrentTab(2);
     } catch (err) {
@@ -197,6 +195,7 @@ const useDogData = (authChecked) => {
     setMatchedDog,
     favoriteDogs,
     setFavoriteDogs,
+    sortLoading,
   };
 };
 

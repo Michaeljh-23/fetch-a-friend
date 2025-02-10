@@ -10,13 +10,11 @@ const FilterForm = ({
   setAgeRange,
   selectedBreeds,
   setSelectedBreeds,
-  handleFilterChange,
   location,
   fetchDogs,
   setLocation,
   setZipCodes,
   locationError,
-  setExactMatch,
 }) => {
   const [showAllBreeds, setShowAllBreeds] = useState(false);
 
@@ -129,7 +127,6 @@ const FilterForm = ({
               </div>
               <BreedsList
                 allBreeds={allBreeds}
-                handleFilterChange={handleFilterChange}
                 selectedBreeds={selectedBreeds}
                 setSelectedBreeds={setSelectedBreeds}
                 filter={filter}

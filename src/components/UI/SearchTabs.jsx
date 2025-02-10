@@ -1,18 +1,19 @@
-const SearchTabs = ({ currentTab, handleTabChange }) => {
+const SearchTabs = ({ currentTab, handleTabChange, matchedDog }) => {
   const tabs = ["All Dogs", "Favorites", "My Match"];
 
   return (
     <div className="tab-group">
       {tabs.map((tab, index) => (
-        <div
+        <button
           key={index}
           className={`tab ${currentTab === index ? "active" : ""}`}
           onClick={() => handleTabChange(index)}
+          disabled={index === 2 && matchedDog === null}
         >
-          <p role="button" className="tab-text">
+          <div role="button" className="tab-text">
             {tab}
-          </p>
-        </div>
+          </div>
+        </button>
       ))}
     </div>
   );
