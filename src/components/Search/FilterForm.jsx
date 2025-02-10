@@ -21,7 +21,7 @@ const FilterForm = ({
   const [showAllBreeds, setShowAllBreeds] = useState(false);
 
   return (
-    <div className="accordion" id="accordionExample">
+    <div className="accordion" id="filter-form-accordion">
       <div className="accordion-item">
         <h2 className="accordion-header" id="headingOne">
           <button
@@ -39,7 +39,7 @@ const FilterForm = ({
           id="collapseOne"
           className="accordion-collapse collapse show"
           aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample"
+          data-bs-parent="#accordionOne"
         >
           <div className="accordion-body">
             <div className="filter-form">

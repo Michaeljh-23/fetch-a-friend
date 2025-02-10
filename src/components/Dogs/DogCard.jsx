@@ -1,11 +1,19 @@
-const DogCard = ({ pup }) => {
+import StarFavoriteSVG from "../../Icons/StarFavoriteSVG";
+
+const DogCard = ({ pup, setFavoriteDogList }) => {
   return (
     <div className="dog-card">
       <img src={pup.img} alt={pup.name} className="dog-image" />
       <div className="dog-details">
-        <h3>{pup.name}</h3>
-        <p>Breed: {pup.breed}</p>
+        {/* <div className="favorites-star">
+          <StarFavoriteSVG />
+        </div> */}
+        <div className="dog-name">
+          <h3>{pup.name}</h3>{" "}
+          <StarFavoriteSVG setFavoriteDogList={setFavoriteDogList} />
+        </div>
         <p>Age: {pup.age}</p>
+        <p>Breed: {pup.breed}</p>
         <p>Zip Code: {pup.zip_code}</p>
       </div>
     </div>

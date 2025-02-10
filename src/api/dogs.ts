@@ -76,13 +76,17 @@ export const getDogMatches = async (params) => {
   }
 };
 
-export const getDogMatchByIds = async (params) => {
-  console.log(dogResponse, params, "jere");
-  const dogResponse = await request("/dogs/match", "POST", params);
-  return dogResponse;
+export const getFavoriteMatch = async (favoriteDogIds) => {
+  try {
+    const response = await request("/dogs/match", "POST", favoriteDogIds);
+    return response;
+  } catch (error) {
+    console.error("Error fetching favorite match:", error);
+    return null;
+  }
 };
 
-export const getDogsByIds = async (params) => {
-  const dogResponse = await request("/dogs", "POST", params);
+export const getDogsByIds = async (dogIds) => {
+  const dogResponse = await request("/dogs", "POST", dogIds);
   return dogResponse;
 };
