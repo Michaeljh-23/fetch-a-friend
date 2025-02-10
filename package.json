@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.1.0",
     "cra-template-typescript": "1.2.0",
     "dotenv": "^16.4.7",
     "react": "^19.0.0",

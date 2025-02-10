@@ -1,0 +1,17 @@
+[build]
+  command = "npm run build"    # Build the React app
+  publish = "build"            # Folder Netlify will deploy after build
+
+[dev]
+  command = "npm start"        # Run dev server with Netlify CLI
+  port = 3000                  # Ensure it matches your React app port
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "18"         
+  CI = "false"                 # Fixes build cache issues
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
