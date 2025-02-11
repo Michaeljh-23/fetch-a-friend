@@ -4,7 +4,7 @@
 
 [dev]
   command = "npm start"        # Run dev server with Netlify CLI
-  port = 3000                  # Ensure it matches your React app port
+  port = 3000                 
   publish = "build"
 
 [build.environment]
