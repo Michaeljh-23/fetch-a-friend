@@ -120,7 +120,12 @@ const FilterForm = ({
                       )}
                     </ul>
                   </div>
-                  <button onClick={fetchDogs} className="match-button rounded">
+                  <button
+                    onClick={() => {
+                      setFilter((prev) => ({ ...prev, from: 0 }));
+                    }}
+                    className="match-button rounded"
+                  >
                     Search Dogs
                   </button>
                 </div>

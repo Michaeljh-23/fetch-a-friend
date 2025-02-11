@@ -4,7 +4,7 @@ const BreedsList = ({
   allBreeds,
   selectedBreeds,
   setSelectedBreeds,
-  fetchDogs,
+  setFilter,
 }) => {
   let alphabetLetters = "abcdefghijklmnopqrstuvwxyz".split("");
   const [letterCategories, setLetterCategories] = useState([]);
@@ -38,6 +38,7 @@ const BreedsList = ({
       setFilteredBreeds(localFilteredBreeds);
     } else {
       setSelectedBreeds(updatedItems);
+      setFilter((prev) => ({ ...prev, from: 0 }));
     }
   };
   const isLetterInUnderlinedBreed = (letter) => {
@@ -45,7 +46,6 @@ const BreedsList = ({
       breed.toLowerCase().startsWith(letter)
     );
   };
-
   return (
     <div className="breeds-list">
       {/* Alphabet Checkboxes */}

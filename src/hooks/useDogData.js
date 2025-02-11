@@ -131,7 +131,7 @@ const useDogData = (authChecked) => {
       ageMin: ageRange.min,
       ageMax: ageRange.max,
     }));
-  }, [selectedBreeds, zipCodes, ageRange]);
+  }, [zipCodes, ageRange, selectedBreeds]);
 
   const fetchFavorites = async () => {
     if (favoriteDogIds.length === 0) {
