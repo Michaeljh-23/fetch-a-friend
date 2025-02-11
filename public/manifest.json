@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Fetch a Friend",
+  "name": "Fetch a Friend",
   "icons": [
     {
       "src": "favicon.ico",

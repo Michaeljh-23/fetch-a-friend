@@ -2,6 +2,8 @@
 
 This project is a React-based application designed to help users search, favorite, and match with adoptable dogs from around the country. This project was completed as part of a take home assesment for Fetch Rewards.
 
+You can find a live version at https://fetchfriend.netlify.app/search
+
 ## .ENV required
 
 To run the project locally, you’ll need access to the API Base URL provided for the assessment.
