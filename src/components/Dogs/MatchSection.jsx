@@ -20,7 +20,6 @@ const MatchSection = ({ matchedDog, favoriteDogs, handleFindMatch }) => {
     fetchLocation();
   }, [matchedDog]);
 
-  console.log(locationDetails);
   if (matchedDog === null || matchedDog === undefined)
     return <NoneFound message="Something went wrong..." />;
   if (loading || locationDetails === null) return <Loading />;

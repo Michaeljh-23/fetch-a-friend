@@ -5,6 +5,7 @@ const BreedsList = ({
   selectedBreeds,
   setSelectedBreeds,
   setFilter,
+  setSortLoading,
 }) => {
   let alphabetLetters = "abcdefghijklmnopqrstuvwxyz".split("");
   const [letterCategories, setLetterCategories] = useState([]);
@@ -39,6 +40,7 @@ const BreedsList = ({
     } else {
       setSelectedBreeds(updatedItems);
       setFilter((prev) => ({ ...prev, from: 0 }));
+      setSortLoading(true);
     }
   };
   const isLetterInUnderlinedBreed = (letter) => {

@@ -35,6 +35,7 @@ const SearchPage = ({ authChecked }) => {
     favoriteDogs,
     fetchFavorites,
     sortLoading,
+    setSortLoading,
   } = useDogData(authChecked);
 
   const handleFavoriteToggle = (dogId) => {
@@ -90,6 +91,7 @@ const SearchPage = ({ authChecked }) => {
             fetchDogs={fetchDogs}
             setZipCodes={setZipCodes}
             locationError={locationError}
+            setSortLoading={setSortLoading}
           />
           <SortOptions
             sort={sort}

@@ -196,6 +196,7 @@ const useDogData = (authChecked) => {
     favoriteDogs,
     setFavoriteDogs,
     sortLoading,
+    setSortLoading,
   };
 };
 

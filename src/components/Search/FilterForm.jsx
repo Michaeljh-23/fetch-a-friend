@@ -15,6 +15,7 @@ const FilterForm = ({
   setLocation,
   setZipCodes,
   locationError,
+  setSortLoading,
 }) => {
   const [showAllBreeds, setShowAllBreeds] = useState(false);
 
@@ -137,6 +138,7 @@ const FilterForm = ({
                 filter={filter}
                 fetchDogs={fetchDogs}
                 setFilter={setFilter}
+                setSortLoading={setSortLoading}
               />
             </div>
           </div>
