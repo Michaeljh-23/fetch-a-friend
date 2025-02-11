@@ -1,8 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Welcome!
+# Welcome!
 
 This project is a React-based application designed to help users search, favorite, and match with adoptable dogs from around the country. This project was completed as part of a take home assesment for Fetch Rewards.
 
@@ -13,6 +9,8 @@ To run the project locally, you’ll need access to the API Base URL provided fo
 1. Create a .env file in the root directory of the project.
 2. Add the following line to the file:
    <code>REACT_APP_BASE_URL=https://theTakeHomeServiceUrl.example</code>
+
+After adding your .env file, run npm install to install dependencies, then start the program with npm run start.
 
 ## Key Features
 
@@ -29,6 +27,10 @@ Kept it simple, using styling tools that Fetch Rewards uses themselves
 - Bootstrap
 - CSS
 - HTML
+
+## Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
