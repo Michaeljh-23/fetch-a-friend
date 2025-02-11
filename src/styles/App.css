@@ -598,6 +598,10 @@ button:disabled {
   h2 {
     font-size: 16px !important;
   }
+  #search-page {
+    padding: 0px 24px 24px 24px;
+  }
+
   .dog-details p {
     font-size: 12px;
   }
