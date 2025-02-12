@@ -26,14 +26,7 @@ const MatchSection = ({ matchedDog, favoriteDogs, handleFindMatch }) => {
   return (
     <div className="match-container">
       <h2>Your Perfect Match is {matchedDog.name}!</h2>
-      <button
-        onClick={() => {
-          handleFindMatch(favoriteDogs);
-        }}
-        className="match-button rounded"
-      >
-        Try Again
-      </button>
+
       <div className="match">
         <img src={matchedDog.img} />
         <div className="match-info">
@@ -52,6 +45,14 @@ const MatchSection = ({ matchedDog, favoriteDogs, handleFindMatch }) => {
           </h2>
         </div>
       </div>
+      <button
+        onClick={() => {
+          handleFindMatch(favoriteDogs);
+        }}
+        className="match-button rounded"
+      >
+        Try Again
+      </button>
     </div>
   );
 };
